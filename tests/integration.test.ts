@@ -13,14 +13,14 @@ describe('Integration Tests', () => {
       const appointmentData = {
         name: 'John Doe',
         email: 'john@example.com',
-        date: '2025-12-25',
+        date: '2027-12-25',
         time: '09:30',
         notes: 'Initial consultation'
       };
 
       // 1. Check initial slot availability
       let slotsResponse = await request(app)
-        .get('/api/slots?date=2025-12-25')
+        .get('/api/slots?date=2027-12-25')
         .expect(200);
 
       let slot930 = slotsResponse.body.find((slot: any) => slot.time === '09:30');
@@ -38,7 +38,7 @@ describe('Integration Tests', () => {
 
       // 3. Verify slot is now unavailable
       slotsResponse = await request(app)
-        .get('/api/slots?date=2025-12-25')
+        .get('/api/slots?date=2027-12-25')
         .expect(200);
 
       slot930 = slotsResponse.body.find((slot: any) => slot.time === '09:30');
@@ -62,7 +62,7 @@ describe('Integration Tests', () => {
 
       // 6. Filter appointments by date
       const filterResponse = await request(app)
-        .get('/api/appointments?date=2025-12-25')
+        .get('/api/appointments?date=2027-12-25')
         .expect(200);
 
       expect(filterResponse.body).toHaveLength(1);
@@ -80,7 +80,7 @@ describe('Integration Tests', () => {
 
       // 9. Verify slot is available again
       slotsResponse = await request(app)
-        .get('/api/slots?date=2025-12-25')
+        .get('/api/slots?date=2027-12-25')
         .expect(200);
 
       slot930 = slotsResponse.body.find((slot: any) => slot.time === '09:30');
@@ -99,19 +99,19 @@ describe('Integration Tests', () => {
         {
           name: 'John Doe',
           email: 'john@example.com',
-          date: '2025-12-25',
+          date: '2027-12-25',
           time: '09:30'
         },
         {
           name: 'Jane Smith',
           email: 'jane@example.com',
-          date: '2025-12-25',
+          date: '2027-12-25',
           time: '10:00'
         },
         {
           name: 'Bob Johnson',
           email: 'bob@example.com',
-          date: '2025-12-26',
+          date: '2027-12-26',
           time: '09:30'
         }
       ];
@@ -136,21 +136,21 @@ describe('Integration Tests', () => {
 
       // Filter by first date
       const dec25Appointments = await request(app)
-        .get('/api/appointments?date=2025-12-25')
+        .get('/api/appointments?date=2027-12-25')
         .expect(200);
 
       expect(dec25Appointments.body).toHaveLength(2);
 
       // Filter by second date
       const dec26Appointments = await request(app)
-        .get('/api/appointments?date=2025-12-26')
+        .get('/api/appointments?date=2027-12-26')
         .expect(200);
 
       expect(dec26Appointments.body).toHaveLength(1);
 
       // Check slot availability for both dates
       const slots25 = await request(app)
-        .get('/api/slots?date=2025-12-25')
+        .get('/api/slots?date=2027-12-25')
         .expect(200);
 
       const unavailableSlots25 = slots25.body.filter((slot: any) => !slot.available);
@@ -158,7 +158,7 @@ describe('Integration Tests', () => {
       expect(unavailableSlots25.map((s: any) => s.time)).toEqual(['09:30', '10:00']);
 
       const slots26 = await request(app)
-        .get('/api/slots?date=2025-12-26')
+        .get('/api/slots?date=2027-12-26')
         .expect(200);
 
       const unavailableSlots26 = slots26.body.filter((slot: any) => !slot.available);
@@ -170,7 +170,7 @@ describe('Integration Tests', () => {
       const appointmentData = {
         name: 'John Doe',
         email: 'john@example.com',
-        date: '2025-12-25',
+        date: '2027-12-25',
         time: '09:30'
       };
 
@@ -200,7 +200,7 @@ describe('Integration Tests', () => {
 
       // Verify slot is still unavailable
       const slotsResponse = await request(app)
-        .get('/api/slots?date=2025-12-25')
+        .get('/api/slots?date=2027-12-25')
         .expect(200);
 
       const slot930 = slotsResponse.body.find((slot: any) => slot.time === '09:30');
@@ -236,7 +236,7 @@ describe('Integration Tests', () => {
         .send({
           name: 'John Doe',
           email: 'invalid-email',
-          date: '2025-12-25',
+          date: '2027-12-25',
           time: '09:30'
         })
         .expect(400);
@@ -250,7 +250,7 @@ describe('Integration Tests', () => {
 
       // Verify slot is still available
       const slots = await request(app)
-        .get('/api/slots?date=2025-12-25')
+        .get('/api/slots?date=2027-12-25')
         .expect(200);
 
       const slot930 = slots.body.find((slot: any) => slot.time === '09:30');
@@ -262,7 +262,7 @@ describe('Integration Tests', () => {
         .send({
           name: 'John Doe',
           email: 'john@example.com',
-          date: '2025-12-25',
+          date: '2027-12-25',
           time: '09:30'
         })
         .expect(201);
@@ -281,7 +281,7 @@ describe('Integration Tests', () => {
 
       // Slots endpoint
       const slotsResponse = await request(app)
-        .get('/api/slots?date=2025-12-25')
+        .get('/api/slots?date=2027-12-25')
         .expect(200);
 
       expect(Array.isArray(slotsResponse.body)).toBe(true);

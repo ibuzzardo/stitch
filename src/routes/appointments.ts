@@ -10,6 +10,7 @@ import {
   DateQuery
 } from '../schemas/appointment.js';
 import { Appointment } from '../types.js';
+import { HttpError } from '../middleware/error-handler.js';
 
 const router = Router();
 
@@ -38,7 +39,7 @@ router.get('/:id', async (req: Request, res: Response, next: NextFunction): Prom
     const appointment = appointmentStore.getById(params.id);
     
     if (!appointment) {
-      throw new Error('Appointment not found');
+      throw new HttpError('Appointment not found', 404);
     }
     
     res.json(appointment);
@@ -54,7 +55,7 @@ router.post('/', async (req: Request, res: Response, next: NextFunction): Promis
     
     // Check if slot is already taken
     if (appointmentStore.isSlotTaken(validatedData.date, validatedData.time)) {
-      throw new Error('This time slot is no longer available');
+      throw new HttpError('This time slot is no longer available', 409);
     }
     
     const appointment: Appointment = {
@@ -77,7 +78,7 @@ router.delete('/:id', async (req: Request, res: Response, next: NextFunction): P
     const deleted = appointmentStore.delete(params.id);
     
     if (!deleted) {
-      throw new Error('Appointment not found');
+      throw new HttpError('Appointment not found', 404);
     }
     
     res.status(204).send();

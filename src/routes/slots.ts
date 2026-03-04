@@ -2,6 +2,7 @@ import { Router, Request, Response, NextFunction } from 'express';
 import { appointmentStore } from '../store.js';
 import { dateQuerySchema, DateQuery } from '../schemas/appointment.js';
 import { TimeSlot } from '../types.js';
+import { HttpError } from '../middleware/error-handler.js';
 
 const router = Router();
 
@@ -15,7 +16,7 @@ const timeSlots = [
 router.get('/', async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
     if (!req.query.date) {
-      throw new Error('date query parameter is required');
+      throw new HttpError('date query parameter is required', 400);
     }
     
     const validatedQuery = dateQuerySchema.parse(req.query) as DateQuery;

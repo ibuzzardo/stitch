@@ -13,7 +13,7 @@ describe('AppointmentStore', () => {
         id: 'test-id',
         name: 'John Doe',
         email: 'john@example.com',
-        date: '2025-12-25',
+        date: '2027-12-25',
         time: '09:30',
         createdAt: new Date()
       };
@@ -42,7 +42,7 @@ describe('AppointmentStore', () => {
         id: 'id1',
         name: 'John Doe',
         email: 'john@example.com',
-        date: '2025-12-25',
+        date: '2027-12-25',
         time: '09:30',
         createdAt: new Date()
       };
@@ -51,7 +51,7 @@ describe('AppointmentStore', () => {
         id: 'id2',
         name: 'Jane Smith',
         email: 'jane@example.com',
-        date: '2025-12-26',
+        date: '2027-12-26',
         time: '10:00',
         createdAt: new Date()
       };
@@ -72,7 +72,7 @@ describe('AppointmentStore', () => {
         id: 'id1',
         name: 'John Doe',
         email: 'john@example.com',
-        date: '2025-12-25',
+        date: '2027-12-25',
         time: '09:30',
         createdAt: new Date()
       };
@@ -81,7 +81,7 @@ describe('AppointmentStore', () => {
         id: 'id2',
         name: 'Jane Smith',
         email: 'jane@example.com',
-        date: '2025-12-26',
+        date: '2027-12-26',
         time: '10:00',
         createdAt: new Date()
       };
@@ -90,7 +90,7 @@ describe('AppointmentStore', () => {
         id: 'id3',
         name: 'Bob Johnson',
         email: 'bob@example.com',
-        date: '2025-12-25',
+        date: '2027-12-25',
         time: '11:00',
         createdAt: new Date()
       };
@@ -99,7 +99,7 @@ describe('AppointmentStore', () => {
       appointmentStore.create(appointment2);
       appointmentStore.create(appointment3);
 
-      const appointments = appointmentStore.getByDate('2025-12-25');
+      const appointments = appointmentStore.getByDate('2027-12-25');
       expect(appointments).toHaveLength(2);
       expect(appointments).toContain(appointment1);
       expect(appointments).toContain(appointment3);
@@ -107,7 +107,7 @@ describe('AppointmentStore', () => {
     });
 
     it('should return empty array for date with no appointments', () => {
-      const appointments = appointmentStore.getByDate('2025-12-31');
+      const appointments = appointmentStore.getByDate('2027-12-31');
       expect(appointments).toEqual([]);
     });
   });
@@ -118,19 +118,19 @@ describe('AppointmentStore', () => {
         id: 'id1',
         name: 'John Doe',
         email: 'john@example.com',
-        date: '2025-12-25',
+        date: '2027-12-25',
         time: '09:30',
         createdAt: new Date()
       };
 
       appointmentStore.create(appointment);
 
-      const isTaken = appointmentStore.isSlotTaken('2025-12-25', '09:30');
+      const isTaken = appointmentStore.isSlotTaken('2027-12-25', '09:30');
       expect(isTaken).toBe(true);
     });
 
     it('should return false for available slot', () => {
-      const isTaken = appointmentStore.isSlotTaken('2025-12-25', '09:30');
+      const isTaken = appointmentStore.isSlotTaken('2027-12-25', '09:30');
       expect(isTaken).toBe(false);
     });
 
@@ -139,14 +139,14 @@ describe('AppointmentStore', () => {
         id: 'id1',
         name: 'John Doe',
         email: 'john@example.com',
-        date: '2025-12-25',
+        date: '2027-12-25',
         time: '09:30',
         createdAt: new Date()
       };
 
       appointmentStore.create(appointment);
 
-      const isTaken = appointmentStore.isSlotTaken('2025-12-26', '09:30');
+      const isTaken = appointmentStore.isSlotTaken('2027-12-26', '09:30');
       expect(isTaken).toBe(false);
     });
 
@@ -155,14 +155,14 @@ describe('AppointmentStore', () => {
         id: 'id1',
         name: 'John Doe',
         email: 'john@example.com',
-        date: '2025-12-25',
+        date: '2027-12-25',
         time: '09:30',
         createdAt: new Date()
       };
 
       appointmentStore.create(appointment);
 
-      const isTaken = appointmentStore.isSlotTaken('2025-12-25', '10:00');
+      const isTaken = appointmentStore.isSlotTaken('2027-12-25', '10:00');
       expect(isTaken).toBe(false);
     });
   });
@@ -173,7 +173,7 @@ describe('AppointmentStore', () => {
         id: 'test-id',
         name: 'John Doe',
         email: 'john@example.com',
-        date: '2025-12-25',
+        date: '2027-12-25',
         time: '09:30',
         createdAt: new Date()
       };
@@ -198,7 +198,7 @@ describe('AppointmentStore', () => {
         id: 'id1',
         name: 'John Doe',
         email: 'john@example.com',
-        date: '2025-12-25',
+        date: '2027-12-25',
         time: '09:30',
         createdAt: new Date()
       };
@@ -207,7 +207,7 @@ describe('AppointmentStore', () => {
         id: 'id2',
         name: 'Jane Smith',
         email: 'jane@example.com',
-        date: '2025-12-26',
+        date: '2027-12-26',
         time: '10:00',
         createdAt: new Date()
       };

@@ -13,7 +13,7 @@ describe('Appointments API', () => {
       const appointmentData = {
         name: 'John Doe',
         email: 'john@example.com',
-        date: '2025-12-25',
+        date: '2027-12-25',
         time: '09:30',
         notes: 'Test appointment'
       };
@@ -46,7 +46,7 @@ describe('Appointments API', () => {
       const appointmentData = {
         name: 'John Doe',
         email: 'john@example.com',
-        date: '2025-12-25',
+        date: '2027-12-25',
         time: '09:30'
       };
 
@@ -69,7 +69,7 @@ describe('Appointments API', () => {
       const appointmentData = {
         name: 'John Doe',
         email: 'john@example.com',
-        date: '2025-12-25',
+        date: '2027-12-25',
         time: '09:30'
       };
 
@@ -89,14 +89,14 @@ describe('Appointments API', () => {
       const appointment1 = {
         name: 'John Doe',
         email: 'john@example.com',
-        date: '2025-12-25',
+        date: '2027-12-25',
         time: '09:30'
       };
 
       const appointment2 = {
         name: 'Jane Doe',
         email: 'jane@example.com',
-        date: '2025-12-26',
+        date: '2027-12-26',
         time: '10:00'
       };
 
@@ -104,7 +104,7 @@ describe('Appointments API', () => {
       await request(app).post('/api/appointments').send(appointment2);
 
       const response = await request(app)
-        .get('/api/appointments?date=2025-12-25')
+        .get('/api/appointments?date=2027-12-25')
         .expect(200);
 
       expect(response.body).toHaveLength(1);
@@ -117,7 +117,7 @@ describe('Appointments API', () => {
       const appointmentData = {
         name: 'John Doe',
         email: 'john@example.com',
-        date: '2025-12-25',
+        date: '2027-12-25',
         time: '09:30'
       };
 
@@ -144,7 +144,7 @@ describe('Appointments API', () => {
       const appointmentData = {
         name: 'John Doe',
         email: 'john@example.com',
-        date: '2025-12-25',
+        date: '2027-12-25',
         time: '09:30'
       };
 

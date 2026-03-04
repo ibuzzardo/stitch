@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { Request, Response, NextFunction } from 'express';
 import { ZodError } from 'zod';
 import { logger } from '../src/middleware/logger.js';
-import { errorHandler } from '../src/middleware/error-handler.js';
+import { errorHandler, HttpError } from '../src/middleware/error-handler.js';
 
 describe('Middleware', () => {
   describe('logger', () => {
@@ -93,7 +93,7 @@ describe('Middleware', () => {
     });
 
     it('should handle "not found" errors with 404 status', () => {
-      const notFoundError = new Error('Appointment not found');
+      const notFoundError = new HttpError('Appointment not found', 404);
 
       errorHandler(notFoundError, mockReq as Request, mockRes as Response, mockNext);
 
@@ -105,7 +105,7 @@ describe('Middleware', () => {
     });
 
     it('should handle "conflict" errors with 409 status', () => {
-      const conflictError = new Error('This time slot is already booked');
+      const conflictError = new HttpError('This time slot is already booked', 409);
 
       errorHandler(conflictError, mockReq as Request, mockRes as Response, mockNext);
 
@@ -117,7 +117,7 @@ describe('Middleware', () => {
     });
 
     it('should handle "already" errors with 409 status', () => {
-      const alreadyError = new Error('Appointment already exists');
+      const alreadyError = new HttpError('Appointment already exists', 409);
 
       errorHandler(alreadyError, mockReq as Request, mockRes as Response, mockNext);
 

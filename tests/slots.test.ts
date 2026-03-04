@@ -11,7 +11,7 @@ describe('Slots API', () => {
   describe('GET /api/slots', () => {
     it('should return all available slots for a date', async () => {
       const response = await request(app)
-        .get('/api/slots?date=2025-12-25')
+        .get('/api/slots?date=2027-12-25')
         .expect(200);
 
       expect(response.body).toHaveLength(16); // 9:00 to 16:30 in 30-min intervals
@@ -24,7 +24,7 @@ describe('Slots API', () => {
       const appointmentData = {
         name: 'John Doe',
         email: 'john@example.com',
-        date: '2025-12-25',
+        date: '2027-12-25',
         time: '09:30'
       };
 
@@ -33,7 +33,7 @@ describe('Slots API', () => {
         .send(appointmentData);
 
       const response = await request(app)
-        .get('/api/slots?date=2025-12-25')
+        .get('/api/slots?date=2027-12-25')
         .expect(200);
 
       const slot930 = response.body.find((slot: any) => slot.time === '09:30');

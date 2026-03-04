@@ -11,7 +11,7 @@ describe('Appointment Schemas', () => {
       const validData = {
         name: 'John Doe',
         email: 'john@example.com',
-        date: '2025-12-25',
+        date: '2027-12-25',
         time: '09:30',
         notes: 'Test appointment'
       };
@@ -24,7 +24,7 @@ describe('Appointment Schemas', () => {
       const validData = {
         name: 'John Doe',
         email: 'john@example.com',
-        date: '2025-12-25',
+        date: '2027-12-25',
         time: '09:30'
       };
 
@@ -36,7 +36,7 @@ describe('Appointment Schemas', () => {
       const data = {
         name: '  John Doe  ',
         email: 'john@example.com',
-        date: '2025-12-25',
+        date: '2027-12-25',
         time: '09:30'
       };
 
@@ -49,7 +49,7 @@ describe('Appointment Schemas', () => {
         const data = {
           name: 'A',
           email: 'john@example.com',
-          date: '2025-12-25',
+          date: '2027-12-25',
           time: '09:30'
         };
 
@@ -60,7 +60,7 @@ describe('Appointment Schemas', () => {
         const data = {
           name: 'A'.repeat(101),
           email: 'john@example.com',
-          date: '2025-12-25',
+          date: '2027-12-25',
           time: '09:30'
         };
 
@@ -71,14 +71,14 @@ describe('Appointment Schemas', () => {
         const minData = {
           name: 'AB',
           email: 'john@example.com',
-          date: '2025-12-25',
+          date: '2027-12-25',
           time: '09:30'
         };
 
         const maxData = {
           name: 'A'.repeat(100),
           email: 'john@example.com',
-          date: '2025-12-25',
+          date: '2027-12-25',
           time: '09:30'
         };
 
@@ -103,7 +103,7 @@ describe('Appointment Schemas', () => {
           const data = {
             name: 'John Doe',
             email,
-            date: '2025-12-25',
+            date: '2027-12-25',
             time: '09:30'
           };
 
@@ -123,7 +123,7 @@ describe('Appointment Schemas', () => {
           const data = {
             name: 'John Doe',
             email,
-            date: '2025-12-25',
+            date: '2027-12-25',
             time: '09:30'
           };
 
@@ -137,7 +137,7 @@ describe('Appointment Schemas', () => {
         const invalidDates = [
           '2025/12/25',
           '25-12-2025',
-          '2025-12-25T10:00:00Z',
+          '2027-12-25T10:00:00Z',
           'December 25, 2025',
           '2025-13-01',
           '2025-12-32',
@@ -170,7 +170,7 @@ describe('Appointment Schemas', () => {
 
       it('should accept today and future dates', () => {
         const today = new Date().toISOString().split('T')[0];
-        const futureDate = '2025-12-25';
+        const futureDate = '2027-12-25';
 
         [today, futureDate].forEach(date => {
           const data = {
@@ -197,7 +197,7 @@ describe('Appointment Schemas', () => {
           const data = {
             name: 'John Doe',
             email: 'john@example.com',
-            date: '2025-12-25',
+            date: '2027-12-25',
             time
           };
 
@@ -215,7 +215,7 @@ describe('Appointment Schemas', () => {
           const data = {
             name: 'John Doe',
             email: 'john@example.com',
-            date: '2025-12-25',
+            date: '2027-12-25',
             time
           };
 
@@ -229,7 +229,7 @@ describe('Appointment Schemas', () => {
         const data = {
           name: 'John Doe',
           email: 'john@example.com',
-          date: '2025-12-25',
+          date: '2027-12-25',
           time: '09:30',
           notes: 'A'.repeat(500)
         };
@@ -241,7 +241,7 @@ describe('Appointment Schemas', () => {
         const data = {
           name: 'John Doe',
           email: 'john@example.com',
-          date: '2025-12-25',
+          date: '2027-12-25',
           time: '09:30',
           notes: 'A'.repeat(501)
         };
@@ -275,7 +275,7 @@ describe('Appointment Schemas', () => {
 
   describe('dateQuerySchema', () => {
     it('should validate valid date format', () => {
-      const validDate = '2025-12-25';
+      const validDate = '2027-12-25';
       const result = dateQuerySchema.parse({ date: validDate });
       expect(result.date).toBe(validDate);
     });

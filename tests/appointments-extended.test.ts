@@ -54,7 +54,7 @@ describe('Appointments API - Extended Tests', () => {
           .send({
             name: 'John Doe',
             email,
-            date: '2025-12-25',
+            date: '2027-12-25',
             time: '09:30'
           })
           .expect(400);
@@ -65,7 +65,7 @@ describe('Appointments API - Extended Tests', () => {
       const invalidDates = [
         '2025/12/25',
         '25-12-2025',
-        '2025-12-25T10:00:00Z',
+        '2027-12-25T10:00:00Z',
         '2025-13-01', // Invalid month
         '2025-12-32', // Invalid day
         '25/12/2025'
@@ -131,7 +131,7 @@ describe('Appointments API - Extended Tests', () => {
           .send({
             name: 'John Doe',
             email: 'john@example.com',
-            date: '2025-12-25',
+            date: '2027-12-25',
             time
           })
           .expect(400);
@@ -146,7 +146,7 @@ describe('Appointments API - Extended Tests', () => {
         .send({
           name: 'John Doe',
           email: 'john@example.com',
-          date: '2025-12-25',
+          date: '2027-12-25',
           time: '09:30',
           notes: longNotes
         })
@@ -161,7 +161,7 @@ describe('Appointments API - Extended Tests', () => {
         .send({
           name: 'John Doe',
           email: 'john@example.com',
-          date: '2025-12-25',
+          date: '2027-12-25',
           time: '09:30',
           notes: maxNotes
         })
@@ -172,14 +172,14 @@ describe('Appointments API - Extended Tests', () => {
       const appointmentData = {
         name: 'John Doe',
         email: 'john@example.com',
-        date: '2025-12-25',
+        date: '2027-12-25',
         time: '09:30'
       };
 
       const secondAppointmentData = {
         name: 'Jane Smith',
         email: 'jane@example.com',
-        date: '2025-12-25',
+        date: '2027-12-25',
         time: '09:30'
       };
 
@@ -237,7 +237,7 @@ describe('Appointments API - Extended Tests', () => {
         .send({
           name: 'John Doe',
           email: 'john@example.com',
-          date: '2025-12-25',
+          date: '2027-12-25',
           time: '09:30'
         })
         .expect(201);
@@ -264,7 +264,7 @@ describe('Appointments API - Extended Tests', () => {
         .send({
           name: 'John Doe',
           email: 'john@example.com',
-          date: '2025-12-25',
+          date: '2027-12-25',
           time: '09:30'
         });
 
@@ -273,7 +273,7 @@ describe('Appointments API - Extended Tests', () => {
         .send({
           name: 'Jane Smith',
           email: 'jane@example.com',
-          date: '2025-12-26',
+          date: '2027-12-26',
           time: '10:00'
         });
 
@@ -282,7 +282,7 @@ describe('Appointments API - Extended Tests', () => {
         .send({
           name: 'Bob Johnson',
           email: 'bob@example.com',
-          date: '2025-12-25',
+          date: '2027-12-25',
           time: '11:00'
         });
     });
@@ -295,7 +295,7 @@ describe('Appointments API - Extended Tests', () => {
 
     it('should handle multiple query parameters gracefully', async () => {
       const response = await request(app)
-        .get('/api/appointments?date=2025-12-25&extra=ignored')
+        .get('/api/appointments?date=2027-12-25&extra=ignored')
         .expect(200);
 
       expect(response.body).toHaveLength(2);
@@ -303,7 +303,7 @@ describe('Appointments API - Extended Tests', () => {
 
     it('should return empty array for date with no appointments', async () => {
       const response = await request(app)
-        .get('/api/appointments?date=2025-12-31')
+        .get('/api/appointments?date=2027-12-31')
         .expect(200);
 
       expect(response.body).toEqual([]);
@@ -315,7 +315,7 @@ describe('Appointments API - Extended Tests', () => {
       const endpoints = [
         { method: 'get', path: '/api/appointments' },
         { method: 'get', path: '/api/health' },
-        { method: 'get', path: '/api/slots?date=2025-12-25' }
+        { method: 'get', path: '/api/slots?date=2027-12-25' }
       ];
 
       for (const endpoint of endpoints) {

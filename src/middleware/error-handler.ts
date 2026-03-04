@@ -2,6 +2,14 @@ import { Request, Response, NextFunction } from 'express';
 import { ZodError } from 'zod';
 import { APIError } from '../types.js';
 
+export class HttpError extends Error {
+  statusCode: number;
+  constructor(message: string, statusCode: number) {
+    super(message);
+    this.statusCode = statusCode;
+  }
+}
+
 export const errorHandler = (
   error: unknown,
   req: Request,
@@ -20,21 +28,31 @@ export const errorHandler = (
     return;
   }
 
+  if (error instanceof HttpError) {
+    const apiError: APIError = {
+      error: error.name,
+      message: error.message
+    };
+    res.status(error.statusCode).json(apiError);
+    return;
+  }
+
+  if (error instanceof SyntaxError && 'body' in error) {
+    const apiError: APIError = {
+      error: 'Bad Request',
+      message: 'Invalid JSON in request body'
+    };
+    res.status(400).json(apiError);
+    return;
+  }
+
   if (error instanceof Error) {
     const apiError: APIError = {
       error: error.name,
       message: error.message
     };
-    
-    if (error.message.includes('not found')) {
-      res.status(404).json(apiError);
-      return;
-    }
-    
-    if (error.message.includes('conflict') || error.message.includes('already')) {
-      res.status(409).json(apiError);
-      return;
-    }
+    res.status(500).json(apiError);
+    return;
   }
 
   const apiError: APIError = {
